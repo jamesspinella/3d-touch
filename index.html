@@ -1,28 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>3D Touch JavaScript Demo</title>
-  <meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no">
-  <link rel="stylesheet" type="text/css" href="style.css">
+	<title>3dtouch Example</title>
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="main.min.css">
+	<!-- JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="3dtouch.js"></script>
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.png"/>
+	<!-- Meta / SEO -->
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-<body>
-  <h1>3D Touch</h1>
-  <p>Touch the sun on your iPhone 6s.</p>
-  <div id="background"></div>
-  <div id="forceMe"></div>
-  <div id="forceValue">Force: 0</div>
-  <div id="footer"><a href="https://github.com/freinbichler/3d-touch">Code</a> | <a href="https://twitter.com/fr3ino">Twitter</a></div>
 
-  <script src="3dtouch.js"></script>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-59959296-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-</body>
-</html>
+<div class="title">Enter some text, then force touch it!</div>
+<input type="text" placeholder="enter some text!"/>

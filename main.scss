@@ -1,0 +1,55 @@
+
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+*	{
+	padding:0;
+	margin:0 auto;
+	-webkit-font-smoothing:antialiased;
+	-webkit-text-size-adjust: 100%;
+	text-rendering: geometricPrecision;
+	text-decoration: none;
+	color:inherit;
+	line-height: normal;
+	/* Responsive Transition Effects */
+	-webkit-transition-duration:0.5s;
+	-webkit-transform: rotate3d(0,0,0);
+	-moz-transition-duration: 0.5s;
+	-moz-transform: rotate3d(0,0,0);
+	-webkit-appearance: none;
+	border-radius: 0;
+	border: 0;
+	background-color: transparent;
+	position: relative;
+  font-family: 'Lato';
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #555;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+input, textarea {
+    font-size: 1em;
+}
+
+input[type="text"], input[type="password"] {
+    background-color: white;
+    padding: 0.25em 1em;
+    -webkit-transition-duration: 0.1s;
+    color: #8698FF;
+    margin: 0 auto;
+    display: block;
+    margin-top: 5rem;
+    width: 50%;
+    max-width: 20rem;
+    background-color: #eee;
+    margin-top: 2rem;
+    display: block;
+    color: #333;
+}

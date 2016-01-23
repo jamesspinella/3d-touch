@@ -1,58 +1,83 @@
-var element = document.getElementById('forceMe');
-var forceValueOutput = document.getElementById('forceValue');
-var background = document.getElementById('background');
-var touch = null;
+// 3dtouch.js
+// Apple Force Touch support for webpages
+// December 3, 2015
+// Derived from freinbichler/3d-touch
 
-addForceTouchToElement(element);
+$(document).ready(function() {
 
-function onTouchStart(e) {
-  e.preventDefault();
-  checkForce(e);
-}
+    console.log("ForceTouch is ready!");
 
-function onTouchMove(e) {
-  e.preventDefault();
-  checkForce(e);
-}
+    $("input").focusin(function() { // Element and event to use with force touch
+        //console.log("focusin");
 
-function onTouchEnd(e) {
-  e.preventDefault();
-  touch = null;
-}
+        var element = this; // element that is affected by forceTouch
+        var touch = null; // value of force level
 
-function checkForce(e) {
-  touch = e.touches[0];
-  setTimeout(refreshForceValue.bind(touch), 10);
-}
+        console.log("Force Touch being applied to: " + element);
 
-function checkMacForce(e) {
-  // max value for trackpad is 3.0 compare to 1.0 on iOS
-  renderElement(e.webkitForce/3);
-}
+        addForceTouchToElement(element); // add event listener to element you want to use forceTouch with
 
-function refreshForceValue() {
-  var touchEvent = this;
-  var forceValue = 0;
-  if(touchEvent) {
-    forceValue = touchEvent.force || 0;
-    setTimeout(refreshForceValue.bind(touch), 10);
-  }else{
-    forceValue = 0;
-  }
+        // when forceTouch starts
+        function onTouchStart(e) {
+            e.preventDefault();
+            checkForce(e);
+        }
 
-  renderElement(forceValue);
-}
+        // when force level changes
+        function onTouchMove(e) {
+            e.preventDefault();
+            checkForce(e);
+        }
 
-function renderElement(forceValue) {
-  element.style.webkitTransform = 'translateX(-50%) translateY(-50%) scale(' + (1 + forceValue * 1.5) + ')';
-  background.style.webkitFilter = 'blur(' + forceValue * 30 + 'px)';
-  forceValueOutput.innerHTML = 'Force: ' + forceValue.toFixed(4);
-}
+        // when forceTouch ends
+        function onTouchEnd(e) {
+            e.preventDefault();
+            touch = null;
+        }
 
-function addForceTouchToElement(elem) {
-  elem.addEventListener('touchstart', onTouchStart, false);
-  elem.addEventListener('touchmove', onTouchMove, false);
-  elem.addEventListener('touchend', onTouchEnd, false);
-  elem.addEventListener('webkitmouseforcewillbegin', checkMacForce, false);
-  elem.addEventListener('webkitmouseforcechanged', checkMacForce, false);
-}
+        // iOS force touch
+        function checkForce(e) {
+            touch = e.touches[0];
+            setTimeout(refreshForceValue.bind(touch), 10);
+        }
+
+        // Macbook force touch
+        function checkMacForce(e) {
+            // max value for trackpad is 3.0 (1.0 on iOS)
+            renderElement(e.webkitForce/3); // divide by 3 to standardize versus iOS force value
+        }
+
+
+        function refreshForceValue() {
+            var touchEvent = this;
+            var forceValue = 0;
+            if(touchEvent) {
+                forceValue = touchEvent.force || 0;
+                setTimeout(refreshForceValue.bind(touch), 10);
+            }else{
+                forceValue = 0;
+            }
+
+						renderElement(forceValue);
+				}
+
+				function renderElement(forceValue) {
+					// if element is being force-touched
+					if (forceValue > 0.8) {
+		        $(element).val(""); // clear form input field
+					}
+				}
+
+        // adds the eventListeners for touch events
+        function addForceTouchToElement(elem) {
+            elem.addEventListener('touchstart', onTouchStart, false);
+            elem.addEventListener('touchmove', onTouchMove, false);
+            elem.addEventListener('touchend', onTouchEnd, false);
+            elem.addEventListener('webkitmouseforcewillbegin', checkMacForce, false);
+            elem.addEventListener('webkitmouseforcechanged', checkMacForce, false);
+        }
+
+
+    });
+
+});
