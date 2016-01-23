@@ -6,4 +6,6 @@ An Apple 3D Touch Implementation in JavaScript
 - Made for quick and easy modification to adapt to your project's needs (easily change element(s) affected by force touch and what happens to them when they are force-touched)
     
       
-  Give it a go on your 2015 MacBook or iPhone 6s/6s+ or newer at http://3dtouch.jatsby.com
+  Give it a go on your 2015 MacBook or iPhone 6s/6s+ or newer at http://3dtouch.jatsby.com  
+  
+NOTE: Must use Safari!
